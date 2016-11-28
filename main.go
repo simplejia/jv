@@ -239,6 +239,10 @@ func getCmds() (cmds [][]string) {
 		cmds = append(cmds, cmd)
 	case Switch:
 		trunk, home, root, url = getInfos()
+		who := input("\n您想切到谁的分支（自己的直接回车）:\n")
+		if who != "" {
+			home = fmt.Sprintf("%s/branches/%s", root, who)
+		}
 		var branch string
 		name := chooseBranch(home, true)
 		if name == "/trunk" {
@@ -250,11 +254,11 @@ func getCmds() (cmds [][]string) {
 		cmds = append(cmds, cmd)
 	case Merge:
 		trunk, home, root, url = getInfos()
-		name := input("\n您想合并谁的分支代码（自己的直接回车）:\n")
-		if name != "" {
-			home = fmt.Sprintf("%s/branches/%s", root, name)
+		who := input("\n您想合并谁的分支代码（自己的直接回车）:\n")
+		if who != "" {
+			home = fmt.Sprintf("%s/branches/%s", root, who)
 		}
-		name = chooseBranch(home, false)
+		name := chooseBranch(home, false)
 		branch := fmt.Sprintf("%s/%s", home, name)
 		cmd := []string{"svn", "merge", branch}
 		cmds = append(cmds, cmd)

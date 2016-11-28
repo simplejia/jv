@@ -7,7 +7,7 @@
 * 做需求时，应copy一个trunk分支(`jv -branch`)，分支代码放到你名下目录：http://xxx/branches/yourname/xxx，分支代码必须在branches/yourname目录下，创建分支同时，你得给一个简短的需求描述文字，jv工具会在列出所有分支时展现这段文字，以方便你记忆
 * 当你的某个分支需要追上trunk最新代码时，你得通过`jv -catch`命令来实现，jv这个命令其实做了这几步：svn rm当前分支（别担心，不是真的删除）；svn copy一个同名分支；svn merge原分支修改；svn switch新分支。（千万不能简单把trunk代码直接merge到分支，这样很可能在把分支重新merge回trunk时造成不必要的冲突，另外svn提供的reintegrate参数方式其实也不能完全解决这个问题）
 * 当你要把代码合到trunk时，你得切到trunk分支(`jv -switch`)，然后通过`jv -merge`命令来实现
-* 当有多人开发同一需求时，可以以某一个人的分支代码为主，其他人分支的代码只需被merge到这个人的分支，最终只需merge这个人的分支到trunk
+* 当有多人开发同一需求时，可以建一个专门的分支用于合并所有人的最新代码用于测试
 
 ## 特性
 * svn命令封装，不用输长长的一串，简单，安全，实用
